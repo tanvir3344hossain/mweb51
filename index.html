@@ -1,0 +1,407 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tanvir Worlds - Premium Mangoes</title>
+    <style>
+        /* =========================================
+           CSS STYLES 
+           ========================================= */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background-color: #f9f9f9;
+            color: #333;
+        }
+
+        :root {
+            --primary: #f59e0b; /* Mango Yellow/Orange */
+            --secondary: #166534; /* Dark Green */
+            --white: #ffffff;
+        }
+
+        /* Navbar */
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: var(--secondary);
+            padding: 15px 5%;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+
+        .logo {
+            color: var(--white);
+            font-size: 24px;
+            font-weight: 700;
+        }
+
+        .nav-menu {
+            list-style: none;
+            display: flex;
+            gap: 20px;
+        }
+
+        .nav-menu li a {
+            color: var(--white);
+            text-decoration: none;
+            font-weight: 500;
+            transition: 0.3s;
+        }
+
+        .nav-menu li a:hover {
+            color: var(--primary);
+        }
+
+        /* Hamburger */
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+            gap: 5px;
+        }
+
+        .hamburger span {
+            width: 25px;
+            height: 3px;
+            background-color: var(--white);
+            transition: 0.3s;
+        }
+
+        /* Hero Section (Cover Photo) */
+        .hero-section {
+            position: relative;
+            margin-top: 60px; /* Offset for fixed navbar */
+            text-align: center;
+        }
+
+        .cover-photo {
+            width: 100%;
+            height: 450px;
+            object-fit: cover;
+            display: block;
+        }
+
+        .hero-content {
+            padding: 40px 20px;
+            background-color: var(--white);
+            border-bottom: 4px solid var(--primary);
+        }
+
+        .hero-content h1 {
+            color: var(--secondary);
+            font-size: 36px;
+            margin-bottom: 10px;
+        }
+
+        /* Sections & Typography */
+        .section {
+            padding: 80px 5%;
+            text-align: center;
+        }
+
+        .bg-light {
+            background-color: #fffbeb;
+        }
+
+        h2 {
+            color: var(--secondary);
+            font-size: 32px;
+            margin-bottom: 30px;
+            position: relative;
+            display: inline-block;
+        }
+        
+        h2::after {
+            content: '';
+            width: 50%;
+            height: 3px;
+            background-color: var(--primary);
+            position: absolute;
+            bottom: -10px;
+            left: 25%;
+        }
+
+        p {
+            font-size: 16px;
+            line-height: 1.8;
+            margin-bottom: 15px;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        /* Grid for Fruits & Gallery */
+        .grid-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        /* Cards (Fruit) */
+        .card {
+            background: var(--white);
+            border-radius: 12px;
+            padding: 20px;
+            box-shadow: 0 6px 12px rgba(0,0,0,0.08);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 12px 24px rgba(0,0,0,0.15);
+        }
+
+        .card img, .gallery-card img {
+            width: 100%;
+            height: 220px;
+            border-radius: 8px;
+            object-fit: cover;
+        }
+
+        .card h3 {
+            margin: 20px 0 10px;
+            color: var(--secondary);
+            font-size: 22px;
+        }
+
+        .price {
+            font-size: 20px;
+            font-weight: bold;
+            color: #d97706;
+            background-color: #fef3c7;
+            padding: 8px;
+            border-radius: 5px;
+            display: inline-block;
+            margin-top: 10px;
+        }
+
+        /* About Section */
+        .about-section {
+            background: linear-gradient(rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0.75)), url('https://images.unsplash.com/photo-1605807646983-377bc5a76493?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80') center/cover;
+            padding: 100px 5%;
+            color: var(--white);
+        }
+
+        .about-section h2 {
+            color: var(--primary);
+        }
+
+        .about-card {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(8px);
+            padding: 40px;
+            border-radius: 15px;
+            max-width: 800px;
+            margin: 0 auto;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        /* Buttons */
+        .btn {
+            display: inline-block;
+            background-color: var(--primary);
+            color: var(--white);
+            padding: 12px 35px;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: bold;
+            font-size: 18px;
+            margin-top: 15px;
+            transition: 0.3s;
+        }
+        
+        .btn:hover {
+            background-color: #d97706;
+        }
+
+        .whatsapp-btn {
+            display: inline-block;
+            background-color: #25D366;
+            color: white;
+            padding: 16px 40px;
+            text-decoration: none;
+            border-radius: 50px;
+            font-size: 20px;
+            font-weight: bold;
+            margin-top: 30px;
+            box-shadow: 0 4px 10px rgba(37, 211, 102, 0.4);
+            transition: 0.3s;
+        }
+
+        .whatsapp-btn:hover {
+            background-color: #128C7E;
+            transform: scale(1.05);
+        }
+
+        footer {
+            background-color: #064e3b;
+            color: var(--white);
+            text-align: center;
+            padding: 25px;
+            margin-top: 20px;
+            font-size: 15px;
+        }
+
+        /* Mobile Responsive */
+        @media (max-width: 768px) {
+            .nav-menu {
+                position: absolute;
+                top: 60px;
+                left: -100%;
+                flex-direction: column;
+                background-color: var(--secondary);
+                width: 100%;
+                text-align: center;
+                padding: 20px 0;
+                transition: 0.4s ease-in-out;
+            }
+
+            .nav-menu.active {
+                left: 0;
+            }
+
+            .hamburger {
+                display: flex;
+            }
+            
+            .cover-photo {
+                height: 250px;
+            }
+            
+            h2 {
+                font-size: 26px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <nav class="navbar">
+        <div class="logo">Tanvir Worlds</div>
+        <div class="hamburger" id="hamburger">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+        <ul class="nav-menu" id="nav-menu">
+            <li><a href="#home">Home</a></li>
+            <li><a href="#fruit">Fruits</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#heritage">Heritage</a></li>
+            <li><a href="#corporate">Corporate</a></li>
+            <li><a href="#gallery">Gallery</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+    </nav>
+
+    <header id="home" class="hero-section">
+        <img src="https://images.unsplash.com/photo-1553284965-83fd3e82fa5a?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80" alt="Tanvir Hossain Cover" class="cover-photo">
+        <div class="hero-content">
+            <h1>Welcome to Tanvir Worlds</h1>
+            <p>Premium, Chemical-free, Fresh Mangoes Straight From Our Garden to Your Home.</p>
+            <a href="#contact" class="btn">Order Now</a>
+        </div>
+    </header>
+
+    <section id="fruit" class="section bg-light">
+        <h2>Our Premium Mangoes</h2>
+        <p>Experience the finest export-quality mangoes, carefully nurtured and harvested from our private orchards.</p>
+        <div class="grid-container">
+            <div class="card">
+                <img src="https://images.unsplash.com/photo-1591073113125-e46713c829ed?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Himsagar">
+                <h3>Himsagar (হিমসাগর)</h3>
+                <p>The King of Mangoes, famous for its unmatched sweetness and zero fiber.</p>
+                <div class="price">Price: 120 BDT / Kg</div>
+            </div>
+            <div class="card">
+                <img src="https://images.unsplash.com/photo-1601493700631-2b16ec4b4716?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Langra">
+                <h3>Langra (ল্যাংড়া)</h3>
+                <p>Aromatic, juicy, and highly demanded for its unique flavor profile.</p>
+                <div class="price">Price: 100 BDT / Kg</div>
+            </div>
+            <div class="card">
+                <img src="https://images.unsplash.com/photo-1619623838634-927cae8a8ba2?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Amrupali">
+                <h3>Amrupali (আম্রপালি)</h3>
+                <p>Rich orange pulp and the highest sugar content. A dessert lover's dream.</p>
+                <div class="price">Price: 130 BDT / Kg</div>
+            </div>
+        </div>
+    </section>
+
+    <section id="about" class="section about-section">
+        <div class="about-card">
+            <h2>About Me & Our Farm</h2>
+            <p style="color: #fff; font-size: 18px;">Hello! I am <strong>Tanvir Hossain</strong>. I am currently pursuing my graduation in the <strong>CSE Department at Daffodil International University</strong>.</p>
+            <br>
+            <p style="color: #fff; font-size: 18px;">At <strong>Tanvir Worlds</strong>, we don't just sell fruits, we deliver trust. Every mango is handpicked <strong>আমাদের নিজস্ব বাগান থেকে</strong>. We ensure 100% natural ripening methods without any harmful chemicals, giving you the authentic, pure taste of summer.</p>
+        </div>
+    </section>
+
+    <section id="heritage" class="section bg-light">
+        <h2>Our Heritage</h2>
+        <p>Rooted in the renowned mango-growing regions, our farming practices have been passed down through generations. We respect the soil and the traditional wisdom of Rajshahi's mango cultivation, combining it with modern precision to maintain the highest quality standards.</p>
+    </section>
+
+    <section id="corporate" class="section">
+        <h2>Corporate Packages</h2>
+        <p>Looking to impress your clients, employees, or business partners? We offer beautifully customized wooden and premium carton packaging for bulk corporate gifting. Fast, reliable, and elegant.</p>
+    </section>
+
+    <section id="gallery" class="section bg-light">
+        <h2>Orchard Gallery</h2>
+        <div class="grid-container">
+            <div class="gallery-card"><img src="https://images.unsplash.com/photo-1528825871115-3581a5387919?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Garden 1"></div>
+            <div class="gallery-card"><img src="https://images.unsplash.com/photo-1623145415754-041a63c4587c?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Harvest"></div>
+            <div class="gallery-card"><img src="https://images.unsplash.com/photo-1629532822005-72ee02eb7858?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Fresh Mangoes"></div>
+        </div>
+    </section>
+
+    <section id="contact" class="section">
+        <h2>Contact & Place Order</h2>
+        <p>Ready to taste the best mangoes in town? Click the WhatsApp button below to message me directly. Let me know which variety and how many KGs you need!</p>
+        
+        <a href="https://wa.me/+8801763685251" target="_blank" class="whatsapp-btn">
+            <svg style="width:24px;height:24px;vertical-align:middle;margin-right:10px" viewBox="0 0 24 24">
+                <path fill="currentColor" d="M12.04 2C6.58 2 2.13 6.45 2.13 11.92C2.13 13.66 2.59 15.36 3.45 16.86L2.05 22L7.3 20.62C8.75 21.41 10.38 21.83 12.04 21.83C17.5 21.83 21.95 17.38 21.95 11.92C21.95 6.45 17.5 2 12.04 2M12.05 19.93C10.57 19.93 9.16 19.53 7.92 18.79L7.63 18.61L4.6 19.4L5.41 16.45L5.22 16.15C4.4 14.86 3.96 13.43 3.96 11.92C3.96 7.46 7.59 3.83 12.05 3.83C16.51 3.83 20.14 7.46 20.14 11.92C20.14 16.38 16.51 19.93 12.05 19.93M16.5 14.93C16.26 14.81 15.06 14.22 14.83 14.13C14.61 14.05 14.44 14.01 14.28 14.25C14.11 14.5 13.65 15.05 13.5 15.22C13.36 15.39 13.21 15.41 12.97 15.29C12.73 15.17 11.94 14.91 10.99 14.06C10.25 13.4 9.75 12.58 9.61 12.33C9.46 12.09 9.59 11.96 9.71 11.84C9.82 11.73 9.95 11.57 10.08 11.41C10.2 11.26 10.25 11.14 10.33 10.95C10.41 10.77 10.37 10.61 10.31 10.49C10.25 10.37 9.75 9.15 9.54 8.65C9.34 8.16 9.14 8.23 8.99 8.22C8.85 8.22 8.68 8.22 8.52 8.22C8.36 8.22 8.09 8.28 7.87 8.52C7.65 8.76 7.04 9.33 7.04 10.48C7.04 11.64 7.89 12.75 8.01 12.91C8.13 13.07 9.65 15.42 12.01 16.44C12.57 16.68 13.01 16.82 13.36 16.93C13.93 17.11 14.44 17.08 14.84 17.02C15.29 16.95 16.26 16.43 16.46 15.85C16.67 15.28 16.67 14.79 16.61 14.67C16.54 14.56 16.38 14.5 16.13 14.38Z" />
+            </svg>
+            Chat on WhatsApp: 01763685251
+        </a>
+    </section>
+
+    <footer>
+        <p>&copy; 2026 Tanvir Worlds. Proudly developed and managed by Tanvir Hossain.</p>
+    </footer>
+
+    <script>
+        // STRICT RULE APPLIED: Declaring all variables properly before using them
+        const hamburgerMenu = document.getElementById('hamburger');
+        const navigationMenu = document.getElementById('nav-menu');
+        const navLinksItems = document.querySelectorAll('.nav-menu li a');
+
+        // Event listener for opening/closing the mobile menu
+        hamburgerMenu.addEventListener('click', function() {
+            navigationMenu.classList.toggle('active');
+        });
+
+        // Event listener to automatically close the mobile menu when a link is clicked
+        navLinksItems.forEach(function(link) {
+            link.addEventListener('click', function() {
+                navigationMenu.classList.remove('active');
+            });
+        });
+    </script>
+</body>
+</html>
